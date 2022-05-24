@@ -1,3 +1,4 @@
+import { title } from 'process';
 import { waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import {
@@ -40,7 +41,17 @@ describe('TodoListComponent', () => {
 
   describe('get todo list', () => {
     it('should show three todo items', waitForAsync(() => {
-      // TODO: implement this test
+      const todoListSandboxService = spectator.inject(TodoListFacadeService);
+      todoListSandboxService.todoList$ = of([
+        new TodoItem('i1', 'Item 1'),
+        new TodoItem('i2', 'Second item'),
+        new TodoItem('i3', '3. item'),
+      ]);
+      spectator = createComponent();
+
+      spectator.detectChanges();
+
+      expect(spectator.queryAll('[data-test="todo-item"]').length).toEqual(3);
     }));
   });
 });

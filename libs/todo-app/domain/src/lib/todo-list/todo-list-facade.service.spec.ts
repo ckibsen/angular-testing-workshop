@@ -40,7 +40,18 @@ describe('Service: TodoListFacadeService', () => {
 
   describe('saveTodoItem', () => {
     it('should save todo item', () => {
-      // TODO: implement this test
+      const todoItem = {
+        title: 'Some title',
+        description: 'Some description',
+        dueDate: '2020-10-10',
+      } as TodoItem;
+
+      service.saveTodoItem(todoItem);
+
+      expect(store.dispatch).toHaveBeenCalledWith({
+        todoItem,
+        type: TodoListActions.saveTodoItemRequest.type,
+      });
     });
   });
 });
