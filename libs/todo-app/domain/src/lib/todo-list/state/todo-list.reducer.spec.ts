@@ -49,6 +49,13 @@ describe('TodoList reducer', () => {
 	describe('addTodoItemReponse', () => {
 		it('should add new todo to todo list', () => {
 			// TODO: implement test
+			const newTodo = new TodoItem('new todo', 'this is new');
+			const todoAddItemAction = TodoListActions.addTodoItemReponse({
+				todoItem: newTodo,
+			});
+			const newState = todoListReducer(state, todoAddItemAction);
+			expect(newState.ids.length).toBe(1);
+			expect(newState.entities[newTodo.id]).toEqual(newTodo);
 		});
 	});
 

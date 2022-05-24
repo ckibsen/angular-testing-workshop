@@ -1,3 +1,4 @@
+import exp = require('constants');
 import { TodoItem } from '@todo/shared/domain';
 import {
 	todoListAdapter,
@@ -30,6 +31,13 @@ describe('Todo list selectors', () => {
 	describe('selectCompletedTodos', () => {
 		it('should return the completed todos', () => {
 			// TODO: implement test
+			const todos = [
+				{ ...new TodoItem('todo1', 'todo1'), completed: true } as TodoItem,
+				{ ...new TodoItem('todo2', 'todo2'), completed: false } as TodoItem,
+			];
+			expect(selectCompletedTodos.projector(todos)).toEqual(
+				todos.filter(todo => todo.completed),
+			);
 		});
 	});
 
